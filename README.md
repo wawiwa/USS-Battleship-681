@@ -3,7 +3,7 @@ USS Battleship 681
 
 Game Instructions
 
-
+THierry
 
 The object of the game is to be the first one to sink your opponents ships.
 
