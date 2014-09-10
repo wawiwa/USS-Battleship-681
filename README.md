@@ -1,9 +1,11 @@
 USS Battleship 681
 =============
 
+Members: Jack Young, Thierry Noumessi, Wade Ward
+		
 Game Instructions
 
-
+THierry
 
 The object of the game is to be the first one to sink your opponents ships.
 
