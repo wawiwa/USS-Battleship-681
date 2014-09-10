@@ -1,6 +1,8 @@
 USS Battleship 681
 =============
 
+Members: Jack Young, Thierry Noumessi, Wade Ward
+		
 Game Instructions
 
 THierry
