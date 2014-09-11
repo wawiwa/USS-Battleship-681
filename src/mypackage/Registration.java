@@ -10,7 +10,9 @@ import org.apache.log4j.Logger;
 
 import Check.CheckRegistration;
 
-import com.opensymphony.xwork2.*;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 
 public class Registration extends ActionSupport implements ModelDriven<User>, Preparable{
 	 
@@ -27,7 +29,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 		check=new CheckRegistration();
 		if(check.valid(user)){
 			System.out.println("inside:"+user.getEmail());
-			logger.info("successful registration :",Registration.class.getName());
+			logger.info("successful registration :");
 			//logger.info("just log info");
 			//logger.debug("just log debug");
 			//logger.warn("just log warn");
@@ -37,14 +39,14 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 		}
 		  if(check.getduplicate()){
 			 setFailure_message("The email:"+user.getEmail()+" exists already");
-			  logger.info("attempt to register failed due to email existing already:",Registration.class.getName());
+			  logger.info("attempt to register failed due to email existing already:");
 			//should go back to rigisteration.jsp and ask for a different email
 			  return "input";
 		  }
 		  
 		  if(!check.getduplicate()){
 			  setFailure_message("a problem has occured. Please try again later");
-			  logger.info("attempt to register failed due to DB or ClassforName:",Registration.class.getName());
+			  logger.info("attempt to register failed due to DB or ClassforName:");
 			  //should go back to index.jsp due to transaction error or unavailability
 			  return "error";
 		  }else {
