@@ -8,6 +8,11 @@
 		<action name="login" class="actions.Driver" method="gotoDashboard">
 			<result name="success">dashboard.jsp</result>
 		</action>
+	
+		<action name="gotoNewUserRegistration" class="actions.Driver" method="gotoRegistrationView">
+			<result name="success">registration.jsp</result>
+		</action>	
+		
 
 	</package>
 </struts>

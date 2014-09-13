@@ -28,7 +28,10 @@
     <br/>
     <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4"><a href="registration.jsp">New User</a></div>
+            <div class="col-md-4">
+            	<s:url action="gotoNewUserRegistration" var="goToReg"></s:url>
+            	<a href="<s:property value='#goToReg'/>">New user Registration</a>
+            </div>
             <div class="col-md-4"></div>
     </div>
 
