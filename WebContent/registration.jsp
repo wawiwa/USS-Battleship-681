@@ -21,10 +21,10 @@
 
         <p class="bg-danger errorBoxLoginNewUser"><strong>Error!</strong> Message</p>
 
-        <input type="username" class="form-control" placeholder="Username" required autofocus><br/>
-        <input type="email" class="form-control" placeholder="Email address" required><br/>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input name="name" type="text" class="form-control" placeholder="Username" required autofocus autocomplete="on"><br/>
+        <input name="email" type="email" class="form-control" placeholder="Email address" required autocomplete="on"><br/>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
+        <input name="password2" type="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
     </s:form>
 
@@ -32,7 +32,7 @@
     <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <s:url action="gotoLogin" var="goToLog"></s:url>
+                <s:url action="login" var="goToLog"></s:url>
             	<a href="<s:property value='#goToLog'/>">Back to Login</a>
             </div>
             <div class="col-md-4"></div>
@@ -47,24 +47,3 @@
 </html>
 
 
-<%-- <html>
-<head></head>
-<body>
-	<h1>registration form</h1>
-    <s:set name="mg" value="failure_message"/>
-	<s:form action="registration" method="POST" >
-		<s:textfield name="name" label="Username" />
-		<s:textfield name="email" label="email" />
-		<s:password name="password" label="Password"/>
-		<s:password name="password2" label="Re-enter Password"/>
-		<s:if test="%{#mg!=null}">
-	<s:property value="failure_message" /> 
-        </s:if>
-		
-		
-		<s:submit />
-	</s:form>
-	<a href="https://www.worldwordweb.us">certifivate</a>
- 
-</body>
-</html> --%>
