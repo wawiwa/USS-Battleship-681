@@ -6,7 +6,7 @@
 	<package name="default" extends="struts-default">
 		
 		<action name="login" class="actions.Driver" method="gotoDashboard">
-			<result name="success">dashboard.html</result>
+			<result name="success">dashboard.jsp</result>
 		</action>
 
 	</package>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +15,12 @@
 
 <div class="container">
 
-    <form class="form-signin" role="form">
+    <s:form action="login" method="POST" cssClass="form-signin" role="form" >
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="email" class="form-control" placeholder="Email address" required autofocus>
         <input type="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+    </s:form>
 
     <br/>
     <div class="row">
