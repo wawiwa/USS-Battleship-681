@@ -38,3 +38,8 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.errorBoxLoginNewUser {
+    padding: 8px 35px 8px 14px;
+    border-radius: 4px;
+}
