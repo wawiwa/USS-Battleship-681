@@ -21,3 +21,5 @@ local.properties
 .classpath
 .settings/
 .loadpath
+/bin/
+/build
