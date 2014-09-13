@@ -7,7 +7,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/existing/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->  
     <link href="assets/css/existing/signin.css" rel="stylesheet">
 
 </head>
@@ -17,7 +17,7 @@
 
     <!-- <form class="form-signin" role="form"> -->
     <s:form action="registration" method="POST" cssClass="form-signin" role="form" >
-        <h2 class="form-signin-heading">New User Form</h2>
+       <h2 class="form-signin-heading">New User Form</h2>
 
         <p class="bg-danger errorBoxLoginNewUser"><strong>Error!</strong> Message</p>
 
