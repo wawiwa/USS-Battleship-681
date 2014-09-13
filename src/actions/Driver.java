@@ -22,14 +22,6 @@ public class Driver extends ActionSupport implements ModelDriven, ServletContext
 	//default serial id added to get rid of the warning message
 	private static final long serialVersionUID = 1L;
 
-//	private Student student;
-//	private EmcFields emcFields;
-//	private ServletContext servletContext;
-//	private List<Student> allTakenSurveys;
-//	private WinningResult winningResult;
-//	private SearchFields searchFields;
-//
-//
 
 	/**
 	 * This method is called when the user clicks the button
@@ -44,9 +36,13 @@ public class Driver extends ActionSupport implements ModelDriven, ServletContext
 		return "success";
 	}
 
-	public String search() {
-		System.out.println("Search method in Driver was called");
-		//System.out.println(searchFields);
+	public String gotoLoginView() {
+		System.out.println("gotoLoginView method was called");
+		return "success";
+	}
+	
+	public String gotoRegistrationView() {
+		System.out.println("gotoRegistration method was called");
 		return "success";
 	}
 	
