@@ -12,7 +12,10 @@
 		<action name="gotoNewUserRegistration" class="actions.Driver" method="gotoRegistrationView">
 			<result name="success">registration.jsp</result>
 		</action>	
-		
+
+		<action name="gotoLogin" class="actions.Driver" method="gotoLoginView">
+			<result name="success">login.jsp</result>
+		</action>			
 
 	</package>
 </struts>

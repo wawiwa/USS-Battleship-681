@@ -31,7 +31,10 @@
     <br/>
     <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4"><a href="login.jsp">Back to Login</a></div>
+            <div class="col-md-4">
+                <s:url action="gotoLogin" var="goToLog"></s:url>
+            	<a href="<s:property value='#goToLog'/>">Back to Login</a>
+            </div>
             <div class="col-md-4"></div>
     </div>
 
