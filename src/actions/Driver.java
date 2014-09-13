@@ -69,7 +69,7 @@ public class Driver extends ActionSupport implements ModelDriven, ServletContext
 		
 	}
 
-
+///thierry
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub
