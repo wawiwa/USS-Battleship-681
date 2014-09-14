@@ -54,7 +54,7 @@ public class Checkregistration {
          }catch(SQLException se){
          
          //Handle errors for JDBC
-         logger.error("connection to DB failed or database error");
+        // logger.error("connection to DB failed or database error");
          setduplicate(false);
          // do not need to return here. but should appear outside the block(return false)
          
@@ -63,12 +63,12 @@ public class Checkregistration {
             if(conn!=null)
                conn.close();
             }catch(SQLException se){
-                    logger.error(" failed to close connection ");
+                //    logger.error(" failed to close connection ");
              }
       
          }catch(Exception e){
          //Handle errors for Class.forName
-         logger.error(" errors for Class.forName :",e.printStackTrace());
+       //  logger.error(" errors for Class.forName :",e.printStackTrace());
          setduplicate(false);
          // do not need to return here will be done outside the block
         
@@ -85,8 +85,8 @@ public class Checkregistration {
 		  */		 
 		 
 		 //just for testing
-		setduplicate(false);
-		return true;
+		setduplicate(true);
+		return false;
 		
 	}
 

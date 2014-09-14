@@ -8,10 +8,11 @@
  
 	<package name="default" namespace="/" extends="struts-default">
 	
-	
+		
+		
+		
 	   <interceptors>
-	   <interceptor-stack name="waitStack">
-	   
+	   <interceptor-stack name="waitStack">	   
        <interceptor-ref name="defaultStack" />
        <interceptor-ref name="execAndWait" >
             <param name="delay">10</param>
@@ -28,6 +29,16 @@
         </interceptor-stack>
         
        </interceptors>
+    <global-results>
+    <result name="custom_error" type="chain">error.jsp    
+    </result>
+    </global-results>
+    
+    <global-exception-mappings>
+     <exception-mapping exception="java.lang.Exception"  result="custom_error" />
+     <exception-mapping exception="org.apache.struts.register.exceptions.SecurityBreachException" result="custom_error" />
+	 <exception-mapping exception="java.lang.Exception" result="custom_error" />
+    </global-exception-mappings>
 		
 		<action name="registration" class="actions.Registration" >	 
 		                  

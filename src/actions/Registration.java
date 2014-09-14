@@ -39,16 +39,18 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 			
 		}
 		  if(check.getduplicate()){
-			 setFailure_message("The email:"+user.getEmail()+" exists already");
-		//	  logger.info("attempt to register failed due to email existing already:",Registration.class.getName());
+			 //setFailure_message("The email:"+user.getEmail()+" exists already");
+		    // logger.info("attempt to register failed due to email existing already:",Registration.class.getName());
 			//should go back to rigisteration.jsp and ask for a different email
+			  addActionError("Error:This email has already been registered");
 			  return "input";
 		  }
 		  
 		  if(!check.getduplicate()){
-			  setFailure_message("a problem has occured. Please try again later");
+			 // setFailure_message("a problem has occured. Please try again later");
 			//  logger.info("attempt to register failed due to DB or ClassforName:",Registration.class.getName());
 			  //should go back to index.jsp due to transaction error or unavailability
+			  addActionError("Error:An error has occured please try again later!");
 			  return "error";
 		  }else {
 			  return "error";

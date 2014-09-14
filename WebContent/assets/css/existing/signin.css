@@ -52,3 +52,22 @@ body {
 .errorsstruts li{ 
 	list-style: none; 
 }
+.errorpage {
+	background-color:red;
+	border:1px solid #CC0000;
+	width:1150px;
+	height:60px;
+	margin-bottom:2px;
+	border: 2px solid;
+    border-radius: 15px;
+}
+.errorpage2 {
+	background-color:#B0B0B0;
+	border:1px solid #CC0000;
+	width:1150px;
+	height:1200px;
+	margin-bottom:2px;
+	border: 2px solid;
+    border-radius: 0px;
+}
+
