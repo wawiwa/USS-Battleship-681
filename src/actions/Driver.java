@@ -46,6 +46,11 @@ public class Driver extends ActionSupport implements ModelDriven, ServletContext
 		return "success";
 	}
 	
+	public String gotoGameBoard() {
+		System.out.println("gotoGameBoard method was called");
+		return "success";
+	}
+	
 	
 	public String home() {
 		System.out.println("Home page view");

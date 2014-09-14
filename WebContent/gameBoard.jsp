@@ -1,18 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BattleShip: Dashboard</title>
+    <title>BattleShip: GameBoard</title>
     <meta name="description" content="">
 
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="../assets/css/jquery.fancybox.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <script src="../assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    
+    
+    <link rel="stylesheet" href="assets/css/GameStyle.css">
+
+    <script src="assets/js/jquery.countdown.min.js"></script>
+    
     <script>
 
         $(document).ready(function() {
@@ -56,10 +64,41 @@
         <div class="content">
 
             <div class="row-fluid">
-                <div class="span5" style="background-color: blue;">
+                <div class="span5">
 
                     <h2>Count Clock goes here</h2>
+<div class="example-base">
+    <div id="clock"></div>
+</div>
 
+<button id="startTimer">Start Timer</button>
+<script type="text/javascript">
+
+function minutes_to_milliseconds(mins) {
+    var MINUTE = 60000;
+    if (!mins || mins < 1) {
+        return;
+    }
+
+    return parseInt(MINUTE * mins);
+}
+
+function startClock() {
+    var duration = new Date().valueOf() + minutes_to_milliseconds(2);
+
+    $('#clock').countdown(duration).on('update.countdown', function(event){
+        $(this).html(event.strftime('%M min %S sec'));
+    }).on('finish.countdown', function(event){
+        $(this).html('Time has Expired!');
+    });
+}
+
+$("#startTimer").click(function() {
+    startClock();
+});
+
+
+</script>
                 </div>
             </div>
 
@@ -93,15 +132,15 @@
     </div>
 </div>
 
-<script src="../assets/js/less.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/jquery.peity.js"></script>
-<script src="../assets/js/jquery.fancybox.js"></script>
-<script src="../assets/js/jquery.flot.js"></script>
-<script src="../assets/js/jquery.color.js"></script>
-<script src="../assets/js/jquery.flot.resize.js"></script>
-<script src="../assets/js/jquery.cookie.js"></script>
-<script src="../assets/js/jquery.cookie.js"></script>
-<script src="../assets/js/custom.js"></script><script src="js/demo.js"></script>
+<script src="assets/js/less.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.peity.js"></script>
+<script src="assets/js/jquery.fancybox.js"></script>
+<script src="assets/js/jquery.flot.js"></script>
+<script src="assets/js/jquery.color.js"></script>
+<script src="assets/js/jquery.flot.resize.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
+<script src="assets/js/custom.js"></script><script src="js/demo.js"></script>
 </body>
 </html>
