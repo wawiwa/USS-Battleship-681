@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -115,6 +115,11 @@ $(document).ready(function() {
 						</div>
 						<div class="box-content">
 							<h3>Table List of games will go here</h3>
+							
+							<s:url action="gotoGameBoard" var="goToGame"></s:url>
+            				<a href="<s:property value='#goToGame'/>">GOTO GameBoard TEMP link</a>
+							
+							
 						</div>
 					</div>
 
