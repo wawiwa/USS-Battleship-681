@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CountDown2</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+
+    <link rel="stylesheet" href="../assets/css/GameStyle.css">
+
+    <script src="../assets/js/jquery.countdown.min.js"></script>
+</head>
+<body>
+
+
+
+<div class="example-base">
+    <div id="clock"></div>
+</div>
+
+<button id="startTimer">Start Timer</button>
+
+
+<script type="text/javascript">
+
+function minutes_to_milliseconds(mins) {
+    var MINUTE = 60000;
+    if (!mins || mins < 1) {
+        return;
+    }
+
+    return parseInt(MINUTE * mins);
+}
+
+function startClock() {
+    var duration = new Date().valueOf() + minutes_to_milliseconds(2);
+
+    $('#clock').countdown(duration).on('update.countdown', function(event){
+        $(this).html(event.strftime('%M min %S sec'));
+    }).on('finish.countdown', function(event){
+        $(this).html('Time has Expired!');
+    });
+}
+
+$("#startTimer").click(function() {
+    startClock();
+});
+
+
+</script>
+
+
+
+</body>
+</html>
