@@ -63,24 +63,29 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 
 	      if (user.getName() == null || user.getName().trim().equals(""))
 	      {
-	         addFieldError("name","The name is required");
+	    	  addActionError("Error:The name is required");
+	        
 	      }
 	      if((user.getName() != null && !user.getName().trim().equals(""))&&(user.getName().length()<2||user.getName().length()>15)){
-	    	  addFieldError("name","name must be between 2 and 15 characters");
+	    	 // addFieldError("name","name must be between 2 and 15 characters");
+	    	  System.out.println("inside");
+	    	  //addFieldError("name","name must be between 2 and 15 characters");
+	    	  addActionError("Error:name must be between 2 and 15 characters");
+	    	 
 	      }
 	      
 	      if (user.getPassword() == null || user.getPassword().trim().equals(""))
 	      {
-	         addFieldError("password","The password is required");
+	    	  addActionError("Error:The password is required");
 	      }
 	      if (user.getPassword2() == null || user.getPassword2().trim().equals(""))
 	      {
-	         addFieldError("password2","The password is required");
+	    	  addActionError("Error:The password is required");
 	      }
 	      
 	      if (user.getEmail() == null || user.getEmail().trim().equals(""))
 	      {
-	         addFieldError("email","The email is required");
+	         addActionError("Error:The email is required!");
 	      }
 	      
 
@@ -88,7 +93,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	    		  && !user.getPassword().trim().equals(user.getPassword2().trim())){
 	    	  // check passwords match if and only if  password fields are neither empty nor null
 	    		System.out.println("pwds:"+user.getPassword()+""+user.getPassword2());
-	            addFieldError("password","the passwords do not match");
+	           addActionError("Error:the passwords do not match");
 	       	        
 	      }
 	      
@@ -104,7 +109,9 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	               Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
 	               Matcher matcher = pattern.matcher(inputStr);	               
 	               if(!matcher.matches())
-	                   addFieldError("email","Invalid email address");
+	                 //  addFieldError("email","Invalid email address");
+	            	   addActionError("Error:Invalid email address");
+	            	   
 	       }
 	      		
 	}	

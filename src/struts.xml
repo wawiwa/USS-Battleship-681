@@ -4,7 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-
+<constant name="struts.custom.i18n.resources" value="global" />
  
 	<package name="default" namespace="/" extends="struts-default">
 	
@@ -29,7 +29,7 @@
         
        </interceptors>
 		
-		<action name="registration" class="actions.Registration" method="execute">	 
+		<action name="registration" class="actions.Registration" >	 
 		                  
 	        <interceptor-ref name="waitStack"/>	        
     

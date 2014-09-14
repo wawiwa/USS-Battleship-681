@@ -43,3 +43,12 @@ body {
     padding: 8px 35px 8px 14px;
     border-radius: 4px;
 }
+.errorsstruts {
+	background-color:#FFCCCC;
+	border:1px solid #CC0000;
+	width:400px;
+	margin-bottom:8px;
+}
+.errorsstruts li{ 
+	list-style: none; 
+}

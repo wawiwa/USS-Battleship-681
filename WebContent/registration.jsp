@@ -19,7 +19,15 @@
     <s:form action="registration" method="POST" cssClass="form-signin" role="form" >
        <h2 class="form-signin-heading">New User Form</h2>
 
-        <p class="bg-danger errorBoxLoginNewUser"><strong>Error!</strong> Message</p>
+       
+
+<s:if test="!hasActionError()"> 
+   <div class="errorsstruts">
+       <s:actionerror/>
+      
+   </div>
+</s:if>
+
 
         <input name="name" type="text" class="form-control" placeholder="Username" required autofocus autocomplete="on"><br/>
         <input name="email" type="email" class="form-control" placeholder="Email address" required autocomplete="on"><br/>
