@@ -64,7 +64,7 @@
         <div class="content">
 
             <div class="row-fluid">
-                <div class="span12">
+                <div class="span5">
 
                     <h2>Count Clock goes here</h2>
 <div class="example-base">
