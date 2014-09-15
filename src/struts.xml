@@ -6,10 +6,7 @@
 <struts>
 <constant name="struts.custom.i18n.resources" value="global" />
  
-	<package name="default" namespace="/" extends="struts-default">
-	
-		
-		
+	<package name="default" namespace="/" extends="struts-default">	
 		
 	   <interceptors>
 	   <interceptor-stack name="waitStack">	   
@@ -27,35 +24,25 @@
             <param name="excludeMethods">input,back,cancel,browse</param>
                </interceptor-ref>
         </interceptor-stack>
+        </interceptors>
         
-       </interceptors>
-    <global-results>
-    <result name="custom_error" type="chain">error.jsp    
-    </result>
-    </global-results>
-    
-    <global-exception-mappings>
-     <exception-mapping exception="java.lang.Exception"  result="custom_error" />
-     <exception-mapping exception="org.apache.struts.register.exceptions.SecurityBreachException" result="custom_error" />
-	 <exception-mapping exception="java.lang.Exception" result="custom_error" />
-    </global-exception-mappings>
-		
+      
 		<action name="registration" class="actions.Registration" >	 
 		                  
-	        <interceptor-ref name="waitStack"/>	        
-    
+	        <interceptor-ref name="waitStack"/>	  
+	        <exception-mapping exception="java.lang.NullPointerException" result="error" />      
 			
 			<result name="input">/registration.jsp</result>
 			<result name="wait">/wait.jsp</result>
 			<result name="success" type="redirect">/login.jsp</result>
-			<result name="error">/error.jsp</result>
-			
+			<result name="error">/error.jsp</result>			
 			
 		</action>
+		
 		<action name="login" class="actions.Login" method="execute">	 
 		                  
 	        <interceptor-ref name="waitStack"/>	        
-    
+            <exception-mapping exception="java.lang.NullPointerException"  result="error" />        
 			
 			<result name="input">/login.jsp</result>
 			<result name="wait">/wait.jsp</result>

@@ -27,6 +27,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	@Override
 	public String execute() throws Exception{	
 		
+		
 		check=new Checkregistration();
 		if(check.valid(user)){
 			System.out.println("inside:"+user.getEmail());

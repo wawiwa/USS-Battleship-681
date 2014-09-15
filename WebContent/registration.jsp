@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
     <title>BattleShip: New User</title>
-
     <!-- Bootstrap core CSS -->
     <link href="assets/css/existing/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->  
