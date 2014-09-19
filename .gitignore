@@ -24,3 +24,5 @@ local.properties
 /bin/
 /build
 .idea/
+
+src/models/User.java
