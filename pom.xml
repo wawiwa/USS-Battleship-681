@@ -4,12 +4,129 @@
   <artifactId>USS-Battleship-681</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+  <properties>
+  <!-- Explicitly declaring the source encoding eliminates the following
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+            resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.jboss.bom>1.0.4.Final</version.jboss.bom>
+        <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
+        <!-- Define the version of the JBoss BOMs we want to import. The JBoss
+            BOMs specify tested stacks. -->
+ 
+        <!-- Alternatively, comment out the above line, and un-comment the line
+            below to use version 1.0.0.Final-redhat-1 which is a release certified to
+            work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven
+            repository. -->
+        <!-- <version.org.jboss.bom>1.0.0.Final-redhat-1</version.org.jboss.bom>> -->
+ 
+        <!-- other plugin versions -->
+        <version.compiler.plugin>2.3.1</version.compiler.plugin>
+        <version.surefire.plugin>2.4.3</version.surefire.plugin>
+        <version.war.plugin>2.1.1</version.war.plugin>
+  </properties>
+  
+  <dependencyManagement>
+        <dependencies>
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+                of artifacts. We use this here so that we always get the correct versions
+                of artifacts. Here we use the jboss-javaee-6.0-with-tools stack (you can
+                read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
+                for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate
+                stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras
+                from the Hibernate family of projects) -->
+ 
+ 
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+ 
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>eclipselink</artifactId>
+                <version>2.5.0-RC1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>commonj.sdo</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+ 
+ 
+        </dependencies>
+    </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-servlet-api</artifactId>
-      <version>7.0.42</version>
-    </dependency>
+  <!-- Import the CDI API, we use provided scope as the API is included in
+            JBoss AS 7 -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+ 
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+ 
+ 
+        <!-- Import the JPA API, we use provided scope as the API is included in
+            JBoss AS 7 -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+ 
+        <!-- Import the EJB API, we use provided scope as the API is included in
+            JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+ 
+        <!-- JSR-303 (Bean Validation) Implementation -->
+        <!-- Provides portable constraints such as @Email -->
+        <!-- Hibernate Validator is shipped in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.31</version>
+	<scope>provided</scope>
+</dependency>
+
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>

@@ -1,11 +1,14 @@
 package actions;
 
 
-
+import org.apache.log4j.Logger;
 
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.ejb.EJB;
+
 import models.User;
 
 //import org.apache.logging.log4j.LogManager;
@@ -15,8 +18,14 @@ import rep_ok.Checkregistration;
 
 import com.opensymphony.xwork2.*;
 
+import edu.gmu.swe681.domain.Player;
+import edu.gmu.swe681.service.PlayerServiceLocal;
+
 public class Registration extends ActionSupport implements ModelDriven<User>, Preparable{
 	 
+	
+	static Logger log = Logger.getLogger(Registration.class.getName());
+	@EJB private PlayerServiceLocal psl;
 	
 	private static final long serialVersionUID = 1L;
 	/*private final Logger logger = LogManager.getLogger(Registration.class.getName());*/
@@ -25,7 +34,19 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	private String failure_message=null;
 	
 	@Override
-	public String execute() throws Exception{	
+	public String execute() throws Exception{
+		
+		////////////// Some example code using player: /////////////////
+		Player player = new Player();
+		player.setEmail("somedude@gmail.com");
+		player.setName("SomeDude");
+		player.setPassword("battle");
+		
+		psl.createNewPlayer(player); // call the service
+		
+		System.out.println("hello???");
+		log.info(player);
+		//////////////////////////////////////////////
 		
 		
 		check=new Checkregistration();
