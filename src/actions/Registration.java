@@ -1,13 +1,12 @@
 package actions;
 
-
-import org.apache.log4j.Logger;
-
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.ejb.EJB;
+import models.User;
+import jpa.Game_stat_op;
+import jpa.User_op;
+import jpa.Game_stat_op;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
@@ -16,45 +15,35 @@ import rep_ok.Checkregistration;
 
 import com.opensymphony.xwork2.*;
 
-import edu.gmu.swe681.domain.User;
-import edu.gmu.swe681.service.UserServiceLocal;
-
 public class Registration extends ActionSupport implements ModelDriven<User>, Preparable{
 	 
-	
-	static Logger log = Logger.getLogger(Registration.class.getName());
-	@EJB private UserServiceLocal psl;
 	
 	private static final long serialVersionUID = 1L;
 	/*private final Logger logger = LogManager.getLogger(Registration.class.getName());*/
 	private User user=new User();
 	private Checkregistration check;
+	private User_op user_op=new User_op();
+	Game_stat_op game=new Game_stat_op();
 	private String failure_message=null;
 	
 	@Override
-	public String execute() throws Exception{
-		
-		////////////// Some example code using player: /////////////////
-		User user = new User();
-		user.setEmail("somedude@gmail.com");
-		user.setName("SomeDude");
-		user.setPassword("battle");
-		
-		psl.createNewPlayerInDb(user); // call the service
-		
-		System.out.println("hello???");
-		log.info(user);
-		//////////////////////////////////////////////
-		
+	public String execute() throws Exception{	
 		
 		check=new Checkregistration();
 		if(check.valid(user)){
+			
+			user_op.insert(user);
+			game.insert(user);
 			System.out.println("inside:"+user.getEmail());
-			//logger.info("successful registration :",Registration.class.getName());
+			
+						//logger.info("successful registration :",Registration.class.getName());
 			//logger.info("just log info");
 			//logger.debug("just log debug");
 			//logger.warn("just log warn");
 			//should go  to login.jsp 
+			addActionMessage("Registration successful!");
+			addActionMessage("Please log in!");
+			
 			return "success";
 			
 		}
@@ -62,7 +51,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 			 //setFailure_message("The email:"+user.getEmail()+" exists already");
 		    // logger.info("attempt to register failed due to email existing already:",Registration.class.getName());
 			//should go back to rigisteration.jsp and ask for a different email
-			  addActionError("Error:This email has already been registered");
+			  addActionError("This email has already been registered");
 			  return "input";
 		  }
 		  
@@ -70,7 +59,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 			 // setFailure_message("a problem has occured. Please try again later");
 			//  logger.info("attempt to register failed due to DB or ClassforName:",Registration.class.getName());
 			  //should go back to index.jsp due to transaction error or unavailability
-			  addActionError("Error:An error has occured please try again later!");
+			  addActionError("An error has occured please try again later!");
 			  return "error";
 		  }else {
 			  return "error";
@@ -85,29 +74,27 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 
 	      if (user.getName() == null || user.getName().trim().equals(""))
 	      {
-	    	  addActionError("Error:The name is required");
-	        
+	    	  addActionError("The name is required");	        
 	      }
 	      if((user.getName() != null && !user.getName().trim().equals(""))&&(user.getName().length()<2||user.getName().length()>15)){
-	    	 // addFieldError("name","name must be between 2 and 15 characters");
+	    	
 	    	  System.out.println("inside");
-	    	  //addFieldError("name","name must be between 2 and 15 characters");
-	    	  addActionError("Error:name must be between 2 and 15 characters");
+	    	  addActionError("name must be between 2 and 15 characters");
 	    	 
 	      }
 	      
 	      if (user.getPassword() == null || user.getPassword().trim().equals(""))
 	      {
-	    	  addActionError("Error:The password is required");
+	    	  addActionError("The password is required");
 	      }
 	      if (user.getPassword2() == null || user.getPassword2().trim().equals(""))
 	      {
-	    	  addActionError("Error:The password is required");
+	    	  addActionError("The password is required");
 	      }
 	      
 	      if (user.getEmail() == null || user.getEmail().trim().equals(""))
 	      {
-	         addActionError("Error:The email is required!");
+	         addActionError("The email is required!");
 	      }
 	      
 
@@ -115,12 +102,11 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	    		  && !user.getPassword().trim().equals(user.getPassword2().trim())){
 	    	  // check passwords match if and only if  password fields are neither empty nor null
 	    		System.out.println("pwds:"+user.getPassword()+""+user.getPassword2());
-	           addActionError("Error:the passwords do not match");
+	           addActionError("the passwords do not match");
 	       	        
 	      }
 	      
-	     // else{
-	    	  /**/
+	    
 	    	    
 	    	   if (user.getEmail() != null && !user.getEmail().trim().equals("")){
 	    	  /* check email format if and only if email fields are neither empty nor null  */    		   
@@ -131,10 +117,11 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	               Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
 	               Matcher matcher = pattern.matcher(inputStr);	               
 	               if(!matcher.matches())
-	                 //  addFieldError("email","Invalid email address");
-	            	   addActionError("Error:Invalid email address");
+	                
+	            	   addActionError("Invalid email address");
 	            	   
 	       }
+	    	   	   
 	      		
 	}	
 	

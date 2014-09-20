@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE struts PUBLIC
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
@@ -10,7 +9,8 @@
 	<package name="default" namespace="/" extends="struts-default">	
 		
 	   <interceptors>
-	   <interceptor-stack name="waitStack">	   
+	   <interceptor name="loginInterceptor" class="interceptors.Interceptor_L1"></interceptor>
+	   <interceptor-stack name="waitStack">	  
        <interceptor-ref name="defaultStack" />
        <interceptor-ref name="execAndWait" >
             <param name="delay">10</param>
@@ -27,6 +27,11 @@
         </interceptor-stack>
         </interceptors>
         
+        <global-results>
+        <result  name="log_in">/login.jsp </result>
+        </global-results>
+       
+      
       
 		<action name="registration" class="actions.Registration" >	 
 		                  
@@ -35,7 +40,7 @@
 			
 			<result name="input">/registration.jsp</result>
 			<result name="wait">/wait.jsp</result>
-			<result name="success" type="redirect">/login.jsp</result>
+			<result name="success" >/login.jsp</result>
 			<result name="error">/error.jsp</result>			
 			
 		</action>
@@ -43,15 +48,33 @@
 		<action name="login" class="actions.Login" method="execute">	 
 		                  
 	        <interceptor-ref name="waitStack"/>	        
-            <exception-mapping exception="java.lang.NullPointerException"  result="error" />        
+               
 			
 			<result name="input">/login.jsp</result>
 			<result name="wait">/wait.jsp</result>
-			<result name="success" type="redirect">/home.jsp</result>
-			<result name="error">/error.jsp</result>
-			
+			<result name="success" type="redirect">homepage.action</result>
+			<result name="error">/error.jsp</result>	
 			
 		</action>
+		
+		<action name="homepage" class="actions.Login" method="home" >	 
+		     <interceptor-ref name="loginInterceptor"/> 	               
+               
+						
+			<result name="success">/dashboard.jsp</result>
+			<result name="error">/error.jsp</result>	
+			
+		</action>
+		<action name="logout" class="actions.Login" method="logout" >		    	               
+               <interceptor-ref name="validation">
+               <param name="excludeMethods">validate</param>
+				</interceptor-ref>
+			<result name="success" >/login.jsp</result>
+			<result name="error">/error.jsp</result>	
+			
+		</action>
+		
+		
 
 	
 		<action name="gotoNewUserRegistration" class="actions.Driver" method="gotoRegistrationView">
@@ -63,6 +86,7 @@
 		</action>			
 
 		<action name="gotoGameBoard" class="actions.Driver" method="gotoGameBoard">
+		 <interceptor-ref name="loginInterceptor"/> 
 			<result name="success">gameBoard.jsp</result>
 		</action>	
 
