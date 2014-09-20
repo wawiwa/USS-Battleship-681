@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
 
-import models.User;
-
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
@@ -18,14 +16,14 @@ import rep_ok.Checkregistration;
 
 import com.opensymphony.xwork2.*;
 
-import edu.gmu.swe681.domain.Player;
-import edu.gmu.swe681.service.PlayerServiceLocal;
+import edu.gmu.swe681.domain.User;
+import edu.gmu.swe681.service.UserServiceLocal;
 
 public class Registration extends ActionSupport implements ModelDriven<User>, Preparable{
 	 
 	
 	static Logger log = Logger.getLogger(Registration.class.getName());
-	@EJB private PlayerServiceLocal psl;
+	@EJB private UserServiceLocal psl;
 	
 	private static final long serialVersionUID = 1L;
 	/*private final Logger logger = LogManager.getLogger(Registration.class.getName());*/
@@ -37,15 +35,15 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 	public String execute() throws Exception{
 		
 		////////////// Some example code using player: /////////////////
-		Player player = new Player();
-		player.setEmail("somedude@gmail.com");
-		player.setName("SomeDude");
-		player.setPassword("battle");
+		User user = new User();
+		user.setEmail("somedude@gmail.com");
+		user.setName("SomeDude");
+		user.setPassword("battle");
 		
-		psl.createNewPlayerInDb(player); // call the service
+		psl.createNewPlayerInDb(user); // call the service
 		
 		System.out.println("hello???");
-		log.info(player);
+		log.info(user);
 		//////////////////////////////////////////////
 		
 		

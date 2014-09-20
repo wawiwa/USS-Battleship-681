@@ -1,8 +1,8 @@
 package rep_ok;
 
 
+import edu.gmu.swe681.domain.User;
 import actions.Registration;
-import models.User;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
