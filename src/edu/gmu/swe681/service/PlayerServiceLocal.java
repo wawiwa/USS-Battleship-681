@@ -7,6 +7,8 @@ import edu.gmu.swe681.domain.Player;
 @Local
 public interface PlayerServiceLocal {
 	
-	public Player createNewPlayer(Player player);
+	public Player createNewPlayerInDb(Player player);
+	
+	public Player findUserByEmail(Player player);
 
 }
