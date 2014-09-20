@@ -1,122 +1,126 @@
 package actions;
 
+import java.util.Date;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import rep_ok.Checklogin;
+
+import com.opensymphony.xwork2.*;
+
+import models.User_reg;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
 
-import rep_ok.Checkregistration;
 
-import com.opensymphony.xwork2.*;
-
-import edu.gmu.swe681.domain.User;
-
-public class Login extends ActionSupport implements ModelDriven<User>, Preparable{
+public class Login extends ActionSupport implements ModelDriven<User_reg>, Preparable,SessionAware{
 	 
 	
 	private static final long serialVersionUID = 1L;
 	/*private final Logger logger = LogManager.getLogger(Registration.class.getName());*/
-	private User user=new User();
-	private Checkregistration check;
-	private String failure_message=null;
+	private User_reg user_reg=new User_reg();
+	private Checklogin check;
+	private Map<String, Object> session;
+	
 	
 	@Override
 	public String execute() throws Exception{	
 		
-		
-		
-	/*	check=new Checkregistration();
-		if(check.valid(user)){
-			System.out.println("inside:"+user.getEmail());
+		check=new Checklogin();
+		if(check.valid(user_reg)){
+			System.out.println("inside0:"+user_reg.getEmail());
 			//logger.info("successful registration :",Registration.class.getName());
 			//logger.info("just log info");
 			//logger.debug("just log debug");
 			//logger.warn("just log warn");
-			//should go  to login.jsp 
+			//should go  to login.jsp 		
+			
+			session.put("logedin","true");			
+			session.put("context",new Date());			
+			session.put("player_email", user_reg.getEmail());
+			addActionMessage("Log in successfull!");
+			System.out.println("inside1:"+user_reg.getEmail());
 			return "success";
 			
-		}
-		  if(check.getduplicate()){
-			 setFailure_message("The email:"+user.getEmail()+" exists already");
-		//	  logger.info("attempt to register failed due to email existing already:",Registration.class.getName());
-			//should go back to rigisteration.jsp and ask for a different email
-			  return "input";
-		  }
+		} else{
+			 addActionError("Bad credential. Please try again!");
+			return "input"; 
 		  
-		  if(!check.getduplicate()){
-			  setFailure_message("a problem has occured. Please try again later");
-			//  logger.info("attempt to register failed due to DB or ClassforName:",Registration.class.getName());
-			  //should go back to index.jsp due to transaction error or unavailability
-			  return "error";
-		  }else {
-			  return "error";
-		  }
+	 	  }		 
+				
+	}
 	
-			
-		*/
+	public String home(){		
 		return "success";
 	}
-	/*
+	public String logout(){		 System.out.println("herrre");
+		/*
+		 * Along the way we will be closing resources and saving states in this method. 
+		 * 
+		 * */
+		/*
+		System.out.println("inside logout:"+user_reg.getEmail());
+		if(session==null){
+			return "success";
+		}else{
+			System.out.println("inside log out 2:"+user_reg.getEmail());
+			session.remove("logedin");
+			addActionMessage("You Have Been Logged Out Successfully!");
+			return "success";	
+		}*/
+	if(session==null){
+		return "success";
+	}else{
+		
+		session.remove("logedin");
+		session.remove("context");
+		session.remove("player_email");
+		addActionMessage("You Have Been Logged Out Successfully!");
+		return "success";	}
+		
+	}
+	
 	@Override
 	public void validate(){
-
-	      if (user.getName() == null || user.getName().trim().equals(""))
+      
+		 System.out.println(session);
+	      if (user_reg.getPassword() == null || user_reg.getPassword().trim().equals(""))
 	      {
-	         addFieldError("name","The name is required");
+	    	  System.out.println("error pwd:"+user_reg.getPassword());
+	    	  addActionError("The password is required");
 	      }
-	      if((user.getName() != null && !user.getName().trim().equals(""))&&(user.getName().length()<2||user.getName().length()>15)){
-	    	  addFieldError("name","name must be between 2 and 15 characters");
-	      }
-	      
-	      if (user.getPassword() == null || user.getPassword().trim().equals(""))
+	      	      
+	      if (user_reg.getEmail() == null || user_reg.getEmail().trim().equals(""))
 	      {
-	         addFieldError("password","The password is required");
+	    	  System.out.println("email required:"+user_reg.getEmail());
+	         addActionError("The email is required!");
 	      }
-	      if (user.getPassword2() == null || user.getPassword2().trim().equals(""))
-	      {
-	         addFieldError("password2","The password is required");
-	      }
-	      
-	      if (user.getEmail() == null || user.getEmail().trim().equals(""))
-	      {
-	         addFieldError("email","The email is required");
-	      }
-	      
-
-	      if(user.getPassword() != null && !user.getPassword().trim().equals("") && user.getPassword2() != null && !user.getPassword2().trim().equals("")
-	    		  && !user.getPassword().trim().equals(user.getPassword2().trim())){
-	    	  // check passwords match if and only if  password fields are neither empty nor null
-	    		System.out.println("pwds:"+user.getPassword()+""+user.getPassword2());
-	            addFieldError("password","the passwords do not match");
-	       	        
-	      }
-	      
-	     // else{
-	    	  /**/
-	    	    
-	    /*	   if (user.getEmail() != null && !user.getEmail().trim().equals("")){
+	       
+	         	    
+	   	   if (user_reg.getEmail() != null && !user_reg.getEmail().trim().equals("")){
 	    	  /* check email format if and only if email fields are neither empty nor null  */    		   
 	    		   
 	    	  
-	    /*        String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-	               CharSequence inputStr = user.getEmail();
+	            String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+	               CharSequence inputStr = user_reg.getEmail();
 	               Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
 	               Matcher matcher = pattern.matcher(inputStr);	               
-	               if(!matcher.matches())
-	                   addFieldError("email","Invalid email address");
+	               if(!matcher.matches()){
+	            	   System.out.println("bad email:"+user_reg.getEmail());
+	            	  
+	            	   addActionError("Invalid email address");}
+	            	   
 	       }
+	   	   
 	      		
-	}	*/
-
+	}	
 	
-	@Override
-	public User getModel() {
-		
-		// TODO Auto-generated method stub
-		return user;
-	}
+	
 
 	@Override
 	public void prepare() throws Exception {
@@ -124,12 +128,23 @@ public class Login extends ActionSupport implements ModelDriven<User>, Preparabl
 		
 	}
 
-	public String getFailure_message() {
-		return failure_message;
+	@Override
+	public User_reg getModel() {
+		// TODO Auto-generated method stub
+		return user_reg;
 	}
 
-	public void setFailure_message(String failure_message) {
-		this.failure_message = failure_message;
+	@Override
+	public void setSession(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		this.session=map;
 	}
+	public Map<String, Object> getSession() {
+		// TODO Auto-generated method stub
+		return session;
+		
+	}
+
+	
   
 }
