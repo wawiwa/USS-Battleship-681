@@ -19,7 +19,6 @@ public class Player implements Serializable {
 	
 	private String name;
 	private String password;
-	private String password2;
 	private String email;
 	
 	public String getName() {
@@ -40,12 +39,7 @@ public class Player implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword2() {
-		return password2;
-	}
-	public void setPassword2(String password2) {
-		this.password2 = password2;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,7 +66,7 @@ public class Player implements Serializable {
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + ", password=" + password
-				+ ", password2=" + password2 + ", email=" + email + "]";
+				+ ", password2=" + ", email=" + email + "]";
 	}
 	
 	

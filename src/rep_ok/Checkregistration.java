@@ -16,6 +16,8 @@ public class Checkregistration {
 	
 	public boolean valid(User user){
 		
+		
+		
 		/*
 		 String ret = ERROR;
          Connection conn = null;

@@ -42,7 +42,7 @@ public class Registration extends ActionSupport implements ModelDriven<User>, Pr
 		player.setName("SomeDude");
 		player.setPassword("battle");
 		
-		psl.createNewPlayer(player); // call the service
+		psl.createNewPlayerInDb(player); // call the service
 		
 		System.out.println("hello???");
 		log.info(player);

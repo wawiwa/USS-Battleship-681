@@ -11,7 +11,15 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 
 	@EJB PlayerDaoLocal pdl;
 	
-	public Player createNewPlayer(Player player) {
+	public Player createNewPlayerInDb(Player player) {
 		return pdl.create(player);
 	}
+
+	@Override
+	public Player findUserByEmail(Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
