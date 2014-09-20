@@ -2,14 +2,16 @@ package actions;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import models.User;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
+
 import rep_ok.Checkregistration;
 
 import com.opensymphony.xwork2.*;
+
+import edu.gmu.swe681.domain.User;
 
 public class Login extends ActionSupport implements ModelDriven<User>, Preparable{
 	 

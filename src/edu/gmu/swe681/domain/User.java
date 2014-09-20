@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PLAYERS")
-public class Player implements Serializable {
+@Table(name="USERS")
+public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -19,8 +19,12 @@ public class Player implements Serializable {
 	
 	private String name;
 	private String password;
+	private String password2;
 	private String email;
 	
+	public Long getId() {
+		return id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -32,6 +36,12 @@ public class Player implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPassword2() {
+		return password2;
+	}
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 	public String getEmail() {
 		return email;
@@ -55,7 +65,7 @@ public class Player implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Player other = (Player) obj;
+		User other = (User) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -65,7 +75,7 @@ public class Player implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", password=" + password
+		return "User [id=" + id + ", name=" + name + ", password=" + password
 				+ ", password2=" + ", email=" + email + "]";
 	}
 	
