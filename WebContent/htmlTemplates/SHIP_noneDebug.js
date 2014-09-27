@@ -38,7 +38,7 @@ function letterPosition(e) {
 
 
 function clearDisabledCells() {
-    $('td').removeClass("disabled");
+    $('Table#OceanCords td').removeClass("disabled");
 }
 
 
@@ -180,7 +180,7 @@ Ship.prototype.fillInShip = function () {
         for (var z = parseInt(leftB) + 1; z < rightB; z++) {
             //console.log("Coords: ", tmp1[0] + z);
             this.shipCords_push(tmp1[0] + z);
-            $('td[id="' + tmp1[0] + z + '"]').addClass("clicked");
+            $('Table#OceanCords td[id="' + tmp1[0] + z + '"]').addClass("clicked");
         }
 
     }
@@ -194,7 +194,7 @@ Ship.prototype.fillInShip = function () {
 
         for (var z = parseInt(topB) + 1; z < bottomB; z++) {
             this.shipCords_push(letters[z - 1] + center);
-            $('td[id="' + letters[z - 1] + center + '"]').addClass("clicked");
+            $('Table#OceanCords td[id="' + letters[z - 1] + center + '"]').addClass("clicked");
         }
 
     }
@@ -207,7 +207,7 @@ Ship.prototype.removePotentialEndsColoring = function () {
 
     //removing the potential green select end parts of the ships
     for (var x = 0; x < this.potentialEnds.length; x++) {
-        $("#" + this.potentialEnds[x]).removeClass("gr");
+        $("Table#OceanCords #" + this.potentialEnds[x]).removeClass("gr");
     }
 
     //clearing the disabled cells;
@@ -218,7 +218,7 @@ Ship.prototype.removePotentialEndsColoring = function () {
 function hasClickedClass(letter, number) {
     // function is used by the anything methods to check if
     // the given letter and number have click class
-    if ($('td[id="' + letter + number + '"]').hasClass("clicked")) {
+    if ($('Table#OceanCords td[id="' + letter + number + '"]').hasClass("clicked")) {
         return true;
     }
     return false;
@@ -366,7 +366,7 @@ Ship.prototype.step1 = function () {
 
     if (this.findLeftBound(center, tmp1[0])) {
         this.potentialEnds.push(tmp1[0] + left);
-        $('td[id="' + tmp1[0] + left + '"]').addClass("gr");
+        $('Table#OceanCords td[id="' + tmp1[0] + left + '"]').addClass("gr");
     } else {
         //No Left bound");
         anyValidEndPoints++;
@@ -374,7 +374,7 @@ Ship.prototype.step1 = function () {
 
     if (this.findRightBound(center, tmp1[0])) {
         this.potentialEnds.push(tmp1[0] + right);
-        $('td[id="' + tmp1[0] + right + '"]').addClass("gr");
+        $('Table#OceanCords td[id="' + tmp1[0] + right + '"]').addClass("gr");
     } else {
         //No RIght bound");
         anyValidEndPoints++;
@@ -382,7 +382,7 @@ Ship.prototype.step1 = function () {
 
     if (this.findTopBound(center, tmp1[0])) {
         this.potentialEnds.push(letters[top-1] + center);
-        $('td[id="' + letters[top-1] + center + '"]').addClass("gr");
+        $('Table#OceanCords td[id="' + letters[top-1] + center + '"]').addClass("gr");
     } else {
         //No top bound");
         anyValidEndPoints++;
@@ -390,7 +390,7 @@ Ship.prototype.step1 = function () {
 
     if (this.findBottomBound(center, tmp1[0])) {
         this.potentialEnds.push(letters[bottom - 1] + center);
-        $('td[id="' + letters[bottom - 1] + center + '"]').addClass("gr");
+        $('Table#OceanCords td[id="' + letters[bottom - 1] + center + '"]').addClass("gr");
     } else {
         //No bottom bound");
         anyValidEndPoints++;
