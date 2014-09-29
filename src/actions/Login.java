@@ -11,12 +11,15 @@ import models.User_reg;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
 
+
+@SuppressWarnings("rawtypes")
 public class Login extends ActionSupport implements ModelDriven, ServletContextAware, Preparable, SessionAware{
 	 
 	
 	private static final long serialVersionUID = 1L;
 
 	private User_reg user_reg;
+	@SuppressWarnings("unused")
 	private ServletContext servletContext;
 	
 	
