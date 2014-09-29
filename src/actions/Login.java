@@ -4,26 +4,22 @@ import java.util.Date;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import javax.servlet.ServletContext;
 import rep_ok.Checklogin;
-
 import com.opensymphony.xwork2.*;
-
 import models.User_reg;
-
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.util.ServletContextAware;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
-
-
-public class Login extends ActionSupport implements ModelDriven<User_reg>, Preparable,SessionAware{
+public class Login extends ActionSupport implements ModelDriven, ServletContextAware, Preparable, SessionAware{
 	 
 	
 	private static final long serialVersionUID = 1L;
-	/*private final Logger logger = LogManager.getLogger(Registration.class.getName());*/
-	private User_reg user_reg=new User_reg();
+
+	private User_reg user_reg;
+	private ServletContext servletContext;
+	
+	
 	private Checklogin check;
 	private Map<String, Object> session;
 	
@@ -31,27 +27,32 @@ public class Login extends ActionSupport implements ModelDriven<User_reg>, Prepa
 	@Override
 	public String execute() throws Exception{	
 		
-		check=new Checklogin();
-		if(check.valid(user_reg)){
-			System.out.println("inside0:"+user_reg.getEmail());
-			//logger.info("successful registration :",Registration.class.getName());
-			//logger.info("just log info");
-			//logger.debug("just log debug");
-			//logger.warn("just log warn");
-			//should go  to login.jsp 		
-			
-			session.put("logedin","true");			
-			session.put("context",new Date());			
-			session.put("player_email", user_reg.getEmail());
-			addActionMessage("Log in successfull!");
-			System.out.println("inside1:"+user_reg.getEmail());
-			return "success";
-			
-		} else{
-			 addActionError("Bad credential. Please try again!");
-			return "input"; 
-		  
-	 	  }		 
+		System.out.println("Email: " + user_reg.getEmail());
+		System.out.println("Password: " + user_reg.getPassword());
+		
+		return "success";
+		
+//		check=new Checklogin();
+//		if(check.valid(user_reg)){
+//			System.out.println("inside0:"+user_reg.getEmail());
+//			//logger.info("successful registration :",Registration.class.getName());
+//			//logger.info("just log info");
+//			//logger.debug("just log debug");
+//			//logger.warn("just log warn");
+//			//should go  to login.jsp 		
+//			
+//			session.put("logedin","true");			
+//			session.put("context",new Date());			
+//			session.put("player_email", user_reg.getEmail());
+//			addActionMessage("Log in successfull!");
+//			System.out.println("inside1:"+user_reg.getEmail());
+//			return "success";
+//			
+//		} else{
+//			 addActionError("Bad credential. Please try again!");
+//			return "input"; 
+//		  
+//	 	  }		 
 				
 	}
 	
@@ -120,18 +121,26 @@ public class Login extends ActionSupport implements ModelDriven<User_reg>, Prepa
 	      		
 	}	
 	
+	/*************************************************************************************/
+	/************************   Getter/Setter Methods       ********************************/
+	/*************************************************************************************/	
+
+	public User_reg getUser_reg() {
+		return user_reg;
+	}
+
+	public void setUser_reg(User_reg user_reg) {
+		this.user_reg = user_reg;
+	}
+	
+	
+	
 	
 
 	@Override
 	public void prepare() throws Exception {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public User_reg getModel() {
-		// TODO Auto-generated method stub
-		return user_reg;
 	}
 
 	@Override
@@ -142,6 +151,20 @@ public class Login extends ActionSupport implements ModelDriven<User_reg>, Prepa
 	public Map<String, Object> getSession() {
 		// TODO Auto-generated method stub
 		return session;
+		
+	}
+
+	
+	@Override
+	public Object getModel() {
+		user_reg = new User_reg();
+		return user_reg;
+	}
+	
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
 		
 	}
 

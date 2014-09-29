@@ -20,8 +20,8 @@
 
     <p class="bg-danger errorBoxLoginNewUser"><strong>Error!</strong> Please enter an username and a password.</p>
 
-    <input type="email" class="form-control" placeholder="Email address" required autofocus><br/>
-        <input type="password" class="form-control" placeholder="Password" required>
+    <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus><br/>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </s:form>
 
