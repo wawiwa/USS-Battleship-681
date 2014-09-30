@@ -9,7 +9,7 @@
 	<package name="default" namespace="/" extends="struts-default">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="interceptors.Interceptor_L1"></interceptor>
+			<interceptor name="loginInterceptor" class="app.interceptors.Interceptor_L1"></interceptor>
 			<interceptor-stack name="waitStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="execAndWait">
