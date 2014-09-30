@@ -1,5 +1,6 @@
 package edu.gmu.swe681.domain;
 
+import java.beans.Transient;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ public class User implements Serializable {
 	private Long id;
 	
 	private String name;
+	
 	private String password;
 	private String password2;
 	private String email;
