@@ -1,6 +1,4 @@
-package edu.gmu.swe681.dao;
-
-
+package ejb.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

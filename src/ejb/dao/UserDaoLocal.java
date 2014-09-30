@@ -1,8 +1,8 @@
-package edu.gmu.swe681.dao;
+package ejb.dao;
 
 import javax.ejb.Local;
 
-import edu.gmu.swe681.domain.User;
+import ejb.domain.User;
 
 @Local
 public interface UserDaoLocal extends GenericDao<User> {
