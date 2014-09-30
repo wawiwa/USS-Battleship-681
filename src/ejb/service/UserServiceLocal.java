@@ -1,8 +1,8 @@
-package edu.gmu.swe681.service;
+package ejb.service;
 
 import javax.ejb.Local;
 
-import edu.gmu.swe681.domain.User;
+import ejb.domain.User;
 
 @Local
 public interface UserServiceLocal {

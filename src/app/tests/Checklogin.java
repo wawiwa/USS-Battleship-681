@@ -1,9 +1,9 @@
-package rep_ok;
+package app.tests;
 
 
-import actions.Login;//ignore the warning since Login will be used when removing comments below
-import models.User;
-import models.User_reg;
+import app.models.User_reg;
+import ejb.domain.User;
+//ignore the warning since Login will be used when removing comments below
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;

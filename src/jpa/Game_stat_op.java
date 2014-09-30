@@ -1,5 +1,5 @@
 package jpa;
-import models.User;
+import ejb.domain.User;
 
 public class Game_stat_op {
 	

@@ -1,4 +1,4 @@
-package actions;
+package app.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,21 +1,22 @@
-package actions;
+package app.actions;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import models.User;
 import jpa.Game_stat_op;
 import jpa.User_op;
-import jpa.Game_stat_op;
+import app.tests.Checkregistration;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
+
+import ejb.domain.User;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
-import rep_ok.Checkregistration;
-
-import com.opensymphony.xwork2.*;
-
-public class Registration extends ActionSupport implements ModelDriven<User>, Preparable{
+@SuppressWarnings("rawtypes")
+public class Registration extends ActionSupport implements ModelDriven, Preparable{
 	 
 	
 	private static final long serialVersionUID = 1L;

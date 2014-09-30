@@ -1,4 +1,4 @@
-package interceptors;
+package app.interceptors;
 
 import java.util.Map;
 

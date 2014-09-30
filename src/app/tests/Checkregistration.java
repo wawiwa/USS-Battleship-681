@@ -1,8 +1,8 @@
-package rep_ok;
+package app.tests;
 
 
-import models.User;
 import jpa.User_op;
+import ejb.domain.User;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;

@@ -1,15 +1,16 @@
-package actions;
+package app.actions;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletContext;
-import rep_ok.Checklogin;
-import com.opensymphony.xwork2.*;
-import models.User_reg;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
+import app.models.User_reg;
+import app.tests.Checklogin;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 
 
 @SuppressWarnings("rawtypes")

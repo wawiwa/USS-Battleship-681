@@ -1,4 +1,4 @@
-package edu.gmu.swe681.domain;
+package ejb.domain;
 
 import java.beans.Transient;
 import java.io.Serializable;

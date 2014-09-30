@@ -1,18 +1,19 @@
-package models;
+package app.models;
 
-
+/**
+ * Description: The purpose of this class is to be linked with the login page.
+ * 				It has a one to one relationship with the login page form fields.
+ */
 public class User_reg {
 	
 	private String email;
 	private String password;
 
 	public String getEmail() {
-		// TODO Auto-generated method stub
 		return email;
 	}
 
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return password;
 	}
 
@@ -22,6 +23,10 @@ public class User_reg {
 
 	public void setEmail(String email) {
 		this.email= email;
+	}
+
+	public String toString() {
+		return "User_reg [email=" + email + ", password=" + password + "]";
 	}
 
 }

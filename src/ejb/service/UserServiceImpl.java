@@ -1,10 +1,10 @@
-package edu.gmu.swe681.service;
+package ejb.service;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import edu.gmu.swe681.dao.UserDaoLocal;
-import edu.gmu.swe681.domain.User;
+import ejb.dao.UserDaoLocal;
+import ejb.domain.User;
 
 @Stateless
 public class UserServiceImpl implements UserServiceLocal {

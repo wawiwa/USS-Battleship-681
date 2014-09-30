@@ -5,4 +5,4 @@
  * @author wward
  *
  */
-package models;
+package app.models;
