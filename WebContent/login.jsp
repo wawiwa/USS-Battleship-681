@@ -18,7 +18,7 @@
     <s:form action="login" method="POST" cssClass="form-signin" role="form" >
         <h2 class="form-signin-heading">Please sign in</h2>
 
-    <p class="bg-danger errorBoxLoginNewUser"><strong>Error!</strong> Please enter an username and a password.</p>
+    <p class="bg-danger errorBoxLoginNewUser">Please enter a username and a password.</p>
 
     <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus><br/>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
