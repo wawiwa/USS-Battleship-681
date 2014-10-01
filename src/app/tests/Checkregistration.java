@@ -1,7 +1,5 @@
 package app.tests;
 
-
-import jpa.User_op;
 import ejb.domain.User;
 
 //import org.apache.logging.log4j.LogManager;
@@ -12,13 +10,12 @@ public class Checkregistration {
 	
 	
 	private boolean duplicate=false;
-	private User_op user_op=new User_op();
 	//private final Logger logger = LogManager.getLogger(CheckRegistration.class.getName());
 	
 	public boolean valid(User user){//This is to verify that the email has not being used yet
 		
 		
-		user_op.select(user);
+		//user_op.select(user);
 		
 		//If the result is non empty, set setduplicate(true) and return false.
 		

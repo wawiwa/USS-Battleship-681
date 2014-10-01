@@ -3,14 +3,22 @@ package app.actions;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
+
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
+
 import app.models.User_reg;
 import app.tests.Checklogin;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
+
+import ejb.service.UserServiceLocal;
 
 
 @SuppressWarnings("rawtypes")
@@ -27,15 +35,24 @@ public class Login extends ActionSupport implements ModelDriven, ServletContextA
 	private Checklogin check;
 	private Map<String, Object> session;
 	
+	private static UserServiceLocal getUserService() throws NamingException {
+		InitialContext context = new InitialContext();
+		return (UserServiceLocal) context
+				.lookup("java:global/USS-Battleship-681/UserServiceImpl!ejb.service.UserServiceLocal");
+	}
 	
 	@Override
-	public String execute() throws Exception{	
+	public String execute() throws Exception{
 		
-		System.out.println("Email: " + user_reg.getEmail());
-		System.out.println("Password: " + user_reg.getPassword());
+		if (getUserService().doesUserExist(user_reg.getEmail()) && getUserService().checkPassword(user_reg)) {
 		
-		return "success";
-		
+			System.out.println("Email: " + user_reg.getEmail());
+			System.out.println("Password: " + user_reg.getPassword());
+			
+			return "success";
+		} else {
+			return "input";
+		}
 //		check=new Checklogin();
 //		if(check.valid(user_reg)){
 //			System.out.println("inside0:"+user_reg.getEmail());

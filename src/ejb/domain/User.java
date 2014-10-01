@@ -1,12 +1,12 @@
 package ejb.domain;
 
-import java.beans.Transient;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="USERS")
@@ -17,10 +17,9 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
 	private String name;
-	
 	private String password;
+	@Transient
 	private String password2;
 	private String email;
 	
@@ -42,6 +41,7 @@ public class User implements Serializable {
 	public String getPassword2() {
 		return password2;
 	}
+	
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
