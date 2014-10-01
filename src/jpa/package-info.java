@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author wward
- *
- */
-package jpa;
