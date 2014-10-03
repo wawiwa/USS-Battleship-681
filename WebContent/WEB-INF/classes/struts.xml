@@ -38,10 +38,10 @@
 			<interceptor-ref name="waitStack" />
 			<exception-mapping exception="java.lang.NullPointerException"
 				result="error" />
-
+				
+			<result name="success" type="redirect">/login.jsp</result> <!-- this redirect circumvents the credentials from being displayed in the url -->
 			<result name="input">/registration.jsp</result>
 			<result name="wait">/wait.jsp</result>
-			<result name="success">/login.jsp</result>
 			<result name="error">/error.jsp</result>
 
 		</action>
@@ -53,8 +53,8 @@
 
 			<result name="input">/login.jsp</result>
 			<result name="wait">/wait.jsp</result>
-			<!-- <result name="success" type="redirect">homepage.action</result> -->
-			<result name="success">/dashboard.jsp</result>
+			<result name="success" type="redirect">homepage.action</result>
+<!-- 			<result name="success">/dashboard.jsp</result> -->
 			<result name="error">/error.jsp</result>
 
 		</action>

@@ -1,5 +1,6 @@
 package app.actions;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,9 +31,6 @@ public class Login extends ActionSupport implements ModelDriven, ServletContextA
 	private User_reg user_reg;
 	@SuppressWarnings("unused")
 	private ServletContext servletContext;
-	
-	
-	private Checklogin check;
 	private Map<String, Object> session;
 	
 	private static UserServiceLocal getUserService() throws NamingException {
@@ -49,7 +47,13 @@ public class Login extends ActionSupport implements ModelDriven, ServletContextA
 			System.out.println("Email: " + user_reg.getEmail());
 			System.out.println("Password: " + user_reg.getPassword());
 			
+			session.put("logedin","true");			
+			session.put("context",new Date());			
+			session.put("player_email", user_reg.getEmail());
+			addActionMessage("Log in successfull!");
+			System.out.println("inside1:"+user_reg.getEmail());
 			return "success";
+	
 		} else {
 			return "input";
 		}
@@ -77,9 +81,11 @@ public class Login extends ActionSupport implements ModelDriven, ServletContextA
 				
 	}
 	
+	// made a random change
 	public String home(){		
 		return "success";
 	}
+	
 	public String logout(){		 System.out.println("herrre");
 		/*
 		 * Along the way we will be closing resources and saving states in this method. 
