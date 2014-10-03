@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserServiceLocal {
 
 	@Override
 	public boolean doesUserExist(User user) {
-		// TODO Auto-generated method stub
-		return true;
+		System.out.println("doesUserExist userObject passed");
+		return false;
 	}
 
 	@Override
@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserServiceLocal {
 
 	@Override
 	public boolean doesUserExist(String email) {
+		System.out.println("doesUserExist email string");
 		// TODO Auto-generated method stub
 		return true;
 	}

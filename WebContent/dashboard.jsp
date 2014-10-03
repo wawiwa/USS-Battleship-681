@@ -114,7 +114,27 @@ $(document).ready(function() {
 							<h3>Prior Games</h3>
 						</div>
 						<div class="box-content">
-							<h3>Table List of games will go here</h3>
+
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th>Date</th>
+                                    <th>User 1</th>
+                                    <th>User 2</th>
+                                    <th>Winner</th>
+                                    <th>etc</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>10/03/2014</td>
+                                    <td>Jack</td>
+                                    <td>Thierry</td>
+                                    <td>Thierry</td>
+                                    <td>NA</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 							
 							<s:url action="gotoGameBoard" var="goToGame"></s:url>
             				<a href="<s:property value='#goToGame'/>">GOTO GameBoard TEMP link</a>
