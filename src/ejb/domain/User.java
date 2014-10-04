@@ -3,11 +3,24 @@ package ejb.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@NamedQueries({
+	@NamedQuery(name ="findUserByEmail", 
+			query="SELECT user FROM User user WHERE user.email LIKE :email"),
+	@NamedQuery(name ="findUserReg", 
+			query="SELECT user FROM User user WHERE user.email LIKE :email AND user.password LIKE :password"),
+//	@NamedQuery(name ="findAllDataSourceByCategoryName",
+//			query="SELECT ds FROM DataSource ds WHERE ds.")
+})
 @Entity
 @Table(name="USERS")
 public class User implements Serializable {
@@ -22,10 +35,22 @@ public class User implements Serializable {
 	@Transient
 	private String password2;
 	private String email;
+	@OneToOne(fetch=FetchType.LAZY)
+	  @JoinColumn(name="GAME_STAT_ID")
+	private GameStat gameStat;
 	
 	public Long getId() {
 		return id;
 	}
+	
+	public GameStat getGameStat() {
+		return gameStat;
+	}
+
+	public void setGameStat(GameStat gameStat) {
+		this.gameStat = gameStat;
+	}
+
 	public String getName() {
 		return name;
 	}

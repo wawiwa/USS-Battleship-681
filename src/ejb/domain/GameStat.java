@@ -14,16 +14,10 @@ public class GameStat implements Serializable {
 	@Id @GeneratedValue
 	private long id;
 	
-	private String email;
 	private int wins;
 	private int losses;
 	private int unfinished;
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	public int getWins() {
 		return wins;
 	}
