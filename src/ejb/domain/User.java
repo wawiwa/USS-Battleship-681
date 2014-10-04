@@ -38,11 +38,39 @@ public class User implements Serializable {
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
 	private GameStat gameStat;
+	private boolean online;
+	private boolean inGame;
 	
 	public Long getId() {
 		return id;
 	}
 	
+	
+	
+	public boolean isOnline() {
+		return online;
+	}
+
+
+
+	public void setOnline(boolean online) {
+		this.online = online;
+	}
+
+
+
+	public boolean isInGame() {
+		return inGame;
+	}
+
+
+
+	public void setInGame(boolean inGame) {
+		this.inGame = inGame;
+	}
+
+
+
 	public GameStat getGameStat() {
 		return gameStat;
 	}

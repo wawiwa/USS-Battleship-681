@@ -2,7 +2,9 @@ package ejb.service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserServiceLocal {
 		gameStat.setWins(0);
 		gameStat.setUnfinished(0);
 		gsdl.create(gameStat);
-		System.out.println("gamestat persisted: "+gameStat.getId());
+		LOGGER.info("gamestat persisted: "+gameStat.getId());
 		user.setGameStat(gameStat);
 		return udl.create(user);
 	}
@@ -74,5 +76,52 @@ public class UserServiceImpl implements UserServiceLocal {
 		return gdl.create(game);
 	}
 
+	@Override
+	public List<Game> getAllUserGames(User user) {
+		List<Game> userGames = new ArrayList<Game>();
+		List<Game> games = gdl.getAll();
+		for (Game g : games) {
+			if (g.getUser1().equals(user)) userGames.add(g);
+			if (g.getUser2().equals(user)) userGames.add(g);
+		}
+		return userGames;
+	}
+
+	@Override
+	public List<User> getUsersOnline() {
+		List<User> usersOnline = new ArrayList<User>();
+		List<User> usersInDb = udl.getAll();
+		for (User u : usersInDb) {
+			if (u.isOnline()) usersOnline.add(u);
+		}
+		return usersOnline;
+	}
+
+	@Override
+	public List<User> getUsersOffline() {
+		List<User> usersOffline = new ArrayList<User>();
+		List<User> usersInDb = udl.getAll();
+		for (User u : usersInDb) {
+			if (!u.isOnline()) usersOffline.add(u);
+		}
+		return usersOffline;
+	}
+
+	@Override
+	public List<User> getUsersInGame() {
+		List<User> usersInGame = new ArrayList<User>();
+		List<User> usersInDb = udl.getAll();
+		for (User u : usersInDb) {
+			if (u.isInGame()) usersInGame.add(u);
+		}
+		return usersInGame;
+	}
+
+	@Override
+	public void updateUserState(User user) {
+		udl.update(user);
+	}
+
+	
 	
 }
