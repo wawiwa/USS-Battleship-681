@@ -21,5 +21,5 @@ public interface UserServiceLocal {
 	
 	public boolean doesUserExist(String email);
 	
-	public Game createNewGame(User user1, User user2);
+	public Game createNewGame(User user1, User user2); 
 }

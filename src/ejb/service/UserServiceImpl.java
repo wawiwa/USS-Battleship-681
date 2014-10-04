@@ -7,11 +7,14 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import org.jboss.logging.Logger;
+
 import app.models.User_reg;
 import ejb.dao.GameDaoLocal;
 import ejb.dao.GameStatDaoLocal;
 import ejb.dao.UserDaoLocal;
 import ejb.domain.Game;
+import ejb.domain.GameStat;
 import ejb.domain.User;
 
 @Stateless
@@ -21,7 +24,17 @@ public class UserServiceImpl implements UserServiceLocal {
 	@EJB GameStatDaoLocal gsdl;
 	@EJB GameDaoLocal gdl;
 	
+	private static final Logger LOGGER = Logger.getLogger(UserServiceLocal.class.getName());
+	
 	public User createNewUserInDb(User user) {
+		LOGGER.info("CREATING USER!!");
+		GameStat gameStat = new GameStat();
+		gameStat.setLosses(0);
+		gameStat.setWins(0);
+		gameStat.setUnfinished(0);
+		gsdl.create(gameStat);
+		System.out.println("gamestat persisted: "+gameStat.getId());
+		user.setGameStat(gameStat);
 		return udl.create(user);
 	}
 

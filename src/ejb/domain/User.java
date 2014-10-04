@@ -15,9 +15,9 @@ import javax.persistence.Transient;
 
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
-			query="SELECT user FROM User user WHERE user.email LIKE :email"),
+			query="SELECT u FROM User u WHERE u.email LIKE :email"),
 	@NamedQuery(name ="findUserReg", 
-			query="SELECT user FROM User user WHERE user.email LIKE :email AND user.password LIKE :password"),
+			query="SELECT u FROM User u WHERE u.email LIKE :email AND u.password LIKE :password"),
 //	@NamedQuery(name ="findAllDataSourceByCategoryName",
 //			query="SELECT ds FROM DataSource ds WHERE ds.")
 })
@@ -36,7 +36,7 @@ public class User implements Serializable {
 	private String password2;
 	private String email;
 	@OneToOne(fetch=FetchType.LAZY)
-	  @JoinColumn(name="GAME_STAT_ID")
+	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
 	private GameStat gameStat;
 	
 	public Long getId() {

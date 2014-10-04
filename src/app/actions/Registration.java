@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.jboss.logging.Logger;
+
 import app.tests.Checkregistration;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,14 +15,15 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 
 import ejb.domain.User;
+import ejb.service.UserServiceImpl;
 import ejb.service.UserServiceLocal;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("rawtypes")
 public class Registration extends ActionSupport implements ModelDriven,
 		Preparable {
 
+	private static final Logger LOGGER = Logger.getLogger(Registration.class.getName());
+	
 	private static UserServiceLocal getUserService() throws NamingException {
 		InitialContext context = new InitialContext();
 		return (UserServiceLocal) context
@@ -42,7 +45,7 @@ public class Registration extends ActionSupport implements ModelDriven,
 
 			getUserService().createNewUserInDb(user);
 
-			System.out.println("User created: " + user.getEmail());
+			LOGGER.info("User created: " + user.getEmail());
 
 			// logger.info("successful registration :",Registration.class.getName());
 			// logger.info("just log info");
